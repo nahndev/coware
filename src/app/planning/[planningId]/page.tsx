@@ -1,11 +1,11 @@
 import RoomDashboard from "@/components/planning/room/dashboard";
-import RoomLayout from "@/components/planning/room/room-layout";
+import RoomLayout from "@/app/planning/[planningId]/layout";
 
 export type TheRoomPageProps = {};
 
 const TheRoomPage: React.FC<TheRoomPageProps> = ({}) => {
   return (
-    <div className="bg-slate-200">
+    <div className="w-screen h-screen bg-slate-200">
       <RoomLayout>
         <RoomDashboard />
       </RoomLayout>

@@ -11,5 +11,6 @@ export const useEstimationDefinitions = () => {
     { id: "20", value: 20, label: "20" },
     { id: "40", value: 40, label: "40" },
     { id: "100", value: 100, label: "100" },
+    { id: "?", value: -1, label: "?" },
   ] as Estimation[];
 };

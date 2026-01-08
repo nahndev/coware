@@ -5,6 +5,6 @@ import { Timestamp } from "./common";
 export type EstimationResult = {
   id: string;
   member: Member;
-  result: Estimation;
-  timestamp: Timestamp;
+  est: Estimation;
+  take: number;
 };
