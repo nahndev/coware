@@ -15,7 +15,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
   return (
     <Relative className="size-full">
       <ShareScreen />
-      <Absolute fluid className="flex justify-center items-center">
+      <Absolute fluid className="flex justify-center items-center bg-black/50">
         <Card className="rounded-lg size-4/5">
           <InProcessTicketCard />
           <Center className="flex-1">

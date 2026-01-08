@@ -1,4 +1,4 @@
-import { RoomDashboard } from "@/components/planning/room";
+import RoomDashboard from "@/components/planning/room/dashboard";
 import RoomLayout from "@/components/planning/room/room-layout";
 
 export type TheRoomPageProps = {};
