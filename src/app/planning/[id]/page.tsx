@@ -4,18 +4,23 @@ import ShareScreen from "@/components/planning/stream/share-screen";
 import InProcessTicketCard from "@/components/planning/ticket/in-process-ticket-card";
 import Absolute from "@/components/ui/absolute";
 import Relative from "@/components/ui/relative";
-import ResultCard from "../result/result-card";
 import Center from "@/components/ui/center";
 import Flex from "@/components/ui/flex";
 import { Card } from "@/components/ui/card";
+import RoomBox from "@/components/planning/stream/room-box";
 
-export type DashboardProps = {};
+export type TheRoomPageProps = {
+  params: { id: string };
+};
 
-const Dashboard: React.FC<DashboardProps> = () => {
+const TheRoomPage: React.FC<TheRoomPageProps> = async ({ params }) => {
+  const { id } = await params;
+  const planning = { id, name: "Example Planning" };
+
   return (
     <Relative className="size-full">
-      <ShareScreen />
-      <Absolute fluid className="flex justify-center items-center bg-black/50">
+      <RoomBox item={planning} />
+      <Absolute fluid className="hidden justify-center items-center bg-black/50">
         <Card className="rounded-lg size-5/6 bg-slate-200 overflow-hidden">
           <InProcessTicketCard />
           <Center className="flex-1">
@@ -28,4 +33,4 @@ const Dashboard: React.FC<DashboardProps> = () => {
   );
 };
 
-export default Dashboard;
+export default TheRoomPage;

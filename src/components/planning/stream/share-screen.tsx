@@ -1,39 +1,20 @@
 "use client";
 
-import Video from "@/components/ui/video";
-import { useEffect, useRef, useState } from "react";
+import { LiveKitRoom, VideoConference } from "@livekit/components-react";
+import "@livekit/components-styles";
 
-export type ShareScreenProps = {};
+export type ShareScreenProps = {
+  token: string;
+  serverUrl: string;
+};
 
-const ShareScreen: React.FC<ShareScreenProps> = () => {
-  const [stream, setStream] = useState<MediaStream | null>(null);
-
-  // useEffect(() => {
-  //   let activeStream: MediaStream | null = null;
-  //   navigator.mediaDevices
-  //     .getDisplayMedia({ video: true, audio: false })
-  //     .then((mediaStream) => {
-  //       setStream(mediaStream);
-  //       activeStream = mediaStream;
-  //     })
-  //     .catch((error) => {});
-  //   return () => {
-  //     if (activeStream) {
-  //       activeStream.getTracks().forEach((t) => t.stop());
-  //     }
-  //   };
-  // }, []);
-
-  if (!stream) {
-    return (
-      <div className="size-full bg-gray-800 flex items-center justify-center text-white">Loading screen share...</div>
-    );
-  }
-
+const ShareScreen: React.FC<ShareScreenProps> = ({ token, serverUrl }) => {
+  console.log("ShareScreen token:", token);
+  console.log("ShareScreen serverUrl:", serverUrl);
   return (
-    <div className="size-full bg-slate-700">
-      <Video stream={stream} />
-    </div>
+    <LiveKitRoom video={true} audio={true} token={token} serverUrl={serverUrl} data-lk-theme="default">
+      <VideoConference />
+    </LiveKitRoom>
   );
 };
 

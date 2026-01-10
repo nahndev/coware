@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  livekit:
+    image: livekit/livekit-server:latest
+    container_name: livekit-server
+    restart: unless-stopped
+    # LiveKit requires host mode for WebRTC UDP port management
+    network_mode: "host"
+    command: --config /livekit.yaml
+    volumes:
+      - ./livekit.yaml:/livekit.yaml:ro
