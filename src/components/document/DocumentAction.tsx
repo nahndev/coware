@@ -1,14 +1,14 @@
 import { Button } from "@/ui/button";
 import { FilePlus, FolderPlus, PlusCircle } from "lucide-react";
 import ButtonIcon from "@/components/ui/button-icon";
-import { FolderCreatorAction } from "./FolderCreatorDialog";
+import { DocumentCreatorDialog } from "./DocumentResourceCreatorDialog";
 
-export type FolderActionProps = {};
+export type DocumentActionProps = {};
 
-const FolderAction: React.FC<FolderActionProps> = () => {
+const DocumentAction: React.FC<DocumentActionProps> = () => {
   return (
     <div className="flex flex-row gap-2">
-      <FolderCreatorAction />
+      <DocumentCreatorDialog />
       <Button>
         <FolderPlus />
       </Button>
@@ -16,4 +16,4 @@ const FolderAction: React.FC<FolderActionProps> = () => {
   );
 };
 
-export default FolderAction;
+export default DocumentAction;

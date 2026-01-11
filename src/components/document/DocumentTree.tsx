@@ -1,6 +1,5 @@
-import { Button } from "@/ui/button";
-import FolderChildrenBox from "./resource/FolderChildrenBox";
-import FolderAction from "./resource/FolderAction";
+import DocumentChildrenBox from "./DocumentChildrenBox";
+import DocumentAction from "./DocumentAction";
 
 export type DocumentTreeProps = {};
 
@@ -9,9 +8,9 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
     <div>
       <nav className="flex items-center justify-between p-4 border-b">
         <h2>Document Tree</h2>
-        <FolderAction />
+        <DocumentAction />
       </nav>
-      <FolderChildrenBox folder={null} />
+      <DocumentChildrenBox parent={null} />
     </div>
   );
 };

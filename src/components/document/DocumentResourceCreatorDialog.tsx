@@ -16,24 +16,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateFolder } from "@/store/document";
+import { useCreateDocument } from "@/store/document";
+import { createDocumentSchema, CreateDocumentDto } from "@/service/document";
 
-const createFolderSchema = z.object({
-  name: z.string().min(1, "Folder name is required"),
-  description: z.string().optional(),
-});
+export type DocumentCreatorDialogProps = {};
 
-type CreateFolderDto = z.infer<typeof createFolderSchema>;
-
-export type FolderCreatorDialogProps = {};
-
-export const FolderCreatorAction: React.FC<FolderCreatorDialogProps> = ({}) => {
-  const { mutate: handleCreateFolder } = useCreateFolder();
+export const DocumentCreatorDialog: React.FC<DocumentCreatorDialogProps> = ({}) => {
+  const { mutate: handleCreateDocument } = useCreateDocument();
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<CreateFolderDto>({ resolver: zodResolver(createFolderSchema) });
+  } = useForm<CreateDocumentDto>({ resolver: zodResolver(createDocumentSchema) });
 
   return (
     <Dialog>
@@ -47,7 +41,7 @@ export const FolderCreatorAction: React.FC<FolderCreatorDialogProps> = ({}) => {
             Enter the folder name and an optional description, then click save to create a new folder.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit((dto) => handleCreateFolder(dto))}>
+        <form onSubmit={handleSubmit((dto) => handleCreateDocument(dto))}>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <Label htmlFor="name">Folder Name</Label>
@@ -56,8 +50,8 @@ export const FolderCreatorAction: React.FC<FolderCreatorDialogProps> = ({}) => {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="description">Description</Label>
-              <Input id="description" placeholder="A brief description" {...register("description")} />
-              {errors.description && <p className="text-sm text-red-600">{errors.description.message}</p>}
+              <Input id="description" placeholder="A brief description" {...register("desc")} />
+              {errors.desc && <p className="text-sm text-red-600">{errors.desc.message}</p>}
             </div>
           </div>
           <div className="flex justify-end pt-4">

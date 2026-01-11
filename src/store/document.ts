@@ -1,5 +1,5 @@
-import { CreateFolderDto, DocumentApi } from "@/service/document";
-import { DocumentFolder, DocumentResource } from "@/types/document";
+import { CreateDocumentDto, DocumentApi } from "@/service/document";
+import { Document } from "@/types/document";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -9,23 +9,23 @@ export const documentQueryKeys = {
   detail: (id: string) => [...documentQueryKeys.all, "detail", id] as const,
 };
 
-export function useResource() {
-  return useQuery<DocumentResource[]>({
+export function useDocuments() {
+  return useQuery<Document[]>({
     queryKey: documentQueryKeys.list(),
-    queryFn: async () => DocumentApi.getAllResources(),
+    queryFn: async () => DocumentApi.getAll(),
   });
 }
 
-export function useDocumentResourceByFolder(folder: DocumentFolder | null) {
-  const { data: resources = [] } = useResource();
-  return resources.filter((item: DocumentResource) => item.folder?.id === folder?.id) || [];
+export function useDocumentsByParent(folder: Document | null) {
+  const { data: resources = [] } = useDocuments();
+  return resources.filter((item: Document) => item.folder?.id === folder?.id) || [];
 }
 
-export function useCreateFolder() {
+export function useCreateDocument() {
   const queryClient = useQueryClient();
-  return useMutation<DocumentFolder, unknown, CreateFolderDto>({
-    mutationFn: (data: CreateFolderDto) => DocumentApi.createFolder(data),
-    onSuccess: (folder: DocumentFolder) => {
+  return useMutation<Document, unknown, CreateDocumentDto>({
+    mutationFn: (data: CreateDocumentDto) => DocumentApi.createOne(data),
+    onSuccess: (folder: Document) => {
       queryClient.invalidateQueries({ queryKey: documentQueryKeys.list() });
       queryClient.setQueryData(documentQueryKeys.list(), (oldData: any) => [...(oldData || []), folder]);
     },
