@@ -3,7 +3,7 @@
 import { Document } from "@/types/document";
 import DocumentItem from "./DocumentItem";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useDocumentsByParent } from "@/store/document";
+import { useDocumentsByParent } from "@/service/document";
 import { cn } from "@/lib/utils";
 import DocumentChildrenBox from "./DocumentChildrenBox";
 

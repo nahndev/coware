@@ -1,6 +1,6 @@
 "use client";
 
-import { useDocumentsByParent } from "@/store/document";
+import { useDocumentsByParent } from "@/service/document";
 import DocumentAction from "./DocumentAction";
 import DocumentChildrenBox from "./DocumentChildrenBox";
 import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";

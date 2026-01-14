@@ -16,8 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateDocument } from "@/store/document";
-import { createDocumentSchema, CreateDocumentDto } from "@/service/document";
+import { useCreateDocument } from "@/service/document";
+import { createDocumentSchema, CreateDocumentDto } from "@/service/api/document";
 
 export type DocumentCreatorDialogProps = {};
 

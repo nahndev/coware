@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Flex from "@/components/ui/flex";
-import { useInProcessTicket } from "@/store/ticket";
+import { useInProcessTicket } from "@/service/ticket";
 import { Ticket } from "@/types/ticket";
 import TicketTimer from "./ticket-timer";
 

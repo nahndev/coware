@@ -1,4 +1,4 @@
-import { useEstimationResults } from "@/store/estimation-result";
+import { useEstimationResults } from "@/service/estimation-result";
 import ResultCard from "./result-card";
 import Flex from "@/components/ui/flex";
 

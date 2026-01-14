@@ -1,6 +1,6 @@
 "use client";
 
-import { useEstimationDefinitions } from "@/store/estimation";
+import { useEstimationDefinitions } from "@/service/estimation";
 import EstimationCard from "./estimation-card";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
