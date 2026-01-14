@@ -12,6 +12,9 @@ import { exampleTheme as theme } from "./theme";
 
 import A4 from "@/components/ui/a4";
 import TextToolbar from "./toolbar/TextToolbar";
+import DocumentVideoBox from "./DocumentVideoBox";
+import StickyHeaderLayout from "@/components/ui/layout/sticky-header-layout";
+import ScrollableLayout from "@/components/ui/layout/scrollable-layout";
 
 const onError = (error: Error) => {
   console.error(error);
@@ -38,15 +41,20 @@ export default function TextEditor({ value, onChangeValue }: TextEditorProps) {
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <TextToolbar />
-      <A4 className="relative flex-1">
-        <RichTextPlugin
-          contentEditable={<ContentEditable className="size-full p-4 outline-none" />}
-          ErrorBoundary={LexicalErrorBoundary}
-        />
-        <HistoryPlugin />
-      </A4>
-      <OnChangePlugin onChange={onChange} ignoreSelectionChange ignoreHistoryMergeTagChange />
+      <StickyHeaderLayout>
+        <TextToolbar />
+        <ScrollableLayout className="flex flex-col">
+          <DocumentVideoBox />
+          <A4 className="flex-1">
+            <RichTextPlugin
+              contentEditable={<ContentEditable className="size-full outline-none" />}
+              ErrorBoundary={LexicalErrorBoundary}
+            />
+            <HistoryPlugin />
+          </A4>
+        </ScrollableLayout>
+        <OnChangePlugin onChange={onChange} ignoreSelectionChange ignoreHistoryMergeTagChange />
+      </StickyHeaderLayout>
     </LexicalComposer>
   );
 }

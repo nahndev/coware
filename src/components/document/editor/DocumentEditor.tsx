@@ -10,12 +10,7 @@ export type DocumentEditorProps = {};
 const DocumentEditor: React.FC<DocumentEditorProps> = () => {
   const [value, setValue] = useState<string | undefined>();
 
-  return (
-    <div className="size-full overflow-auto flex flex-col">
-      <DocumentVideoBox />
-      <TextEditor value={value} onChangeValue={setValue} />
-    </div>
-  );
+  return <TextEditor value={value} onChangeValue={setValue} />;
 };
 
 export default DocumentEditor;

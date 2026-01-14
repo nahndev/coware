@@ -1,5 +1,6 @@
 "use client";
 
+import A4 from "@/components/ui/a4";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -74,7 +75,7 @@ const DocumentVideoBox: React.FC<DocumentVideoBoxProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <A4 className="w-full h-min mx-auto">
       {!uploadedVideo ? (
         <div
           {...getRootProps()}
@@ -140,7 +141,7 @@ const DocumentVideoBox: React.FC<DocumentVideoBoxProps> = ({
       )}
 
       {error && <div className="mt-2 text-sm text-red-600 bg-red-50 p-2 rounded">{error}</div>}
-    </div>
+    </A4>
   );
 };
 
