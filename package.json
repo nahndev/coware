@@ -32,6 +32,7 @@
     "livekit-client": "^2.16.1",
     "livekit-server-sdk": "^2.15.0",
     "lucide-react": "^0.562.0",
+    "luxon": "^3.7.2",
     "next": "16.1.1",
     "numeral": "^2.0.6",
     "react": "19.2.3",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/luxon": "^3.7.1",
     "@types/node": "^20",
     "@types/numeral": "^2.0.5",
     "@types/react": "^19",

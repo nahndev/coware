@@ -1,59 +1,39 @@
-import { CreateDocumentDto } from "@/service/api/document";
-import { Identify } from "@/types/common";
-import { RandomHistory, RandomItem } from "@/types/random";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { v4 } from "uuid";
+import { Identify, OnSuccess } from "@/types/common";
+import { RandomHistory, RandomItem, RandomItemWithStatus } from "@/types/random";
 import { useCallback } from "react";
+import { v4 } from "uuid";
+import { useRandomStore } from "./store/random-store";
 
-const RANDOM_STORE_KEY = "@random/random-store";
-export type RandomStore = {
-  items: RandomItem[];
-  histories: RandomHistory[];
-  setItem: (id: Identify, item: RandomItem | null) => void;
-  setHistory: (id: Identify, history: RandomHistory | null) => void;
+export const useRandomItems = (): RandomItemWithStatus[] => {
+  const histories = useRandomHistories();
+  const items = useRandomStore((state) => state.items);
+
+  const historySetByValue = histories.reduce((sum, item) => sum.add(item.value.id), new Set());
+  return items.map((item) => {
+    return {
+      ...item,
+      inactive: historySetByValue.has(item.id),
+    };
+  });
 };
 
-export const useRandomStore = create<RandomStore>()(
-  persist(
-    (set, get) => ({
-      items: [],
-      histories: [],
-      setItem: (id, item) => {
-        const items = item
-          ? get().items.map((it) => (it.id === id ? item : it))
-          : get().items.filter((it) => it.id !== id);
-        set({ items });
-      },
-      setHistory: (id, history) => {
-        const histories = history
-          ? get().histories.map((it) => (it.id === id ? history : it))
-          : get().histories.filter((it) => it.id !== id);
-        set({ histories });
-      },
-    }),
-    { name: RANDOM_STORE_KEY }
-  )
-);
-
-export const useRandomItems = () => {
-  const data = useRandomStore((state) => state.items);
-  return { data };
+export const useActiveRandomItems = () => {
+  return useRandomItems().filter((item) => !item.inactive);
 };
 
 export const useRandomHistories = () => {
-  const data = useRandomStore((state) => state.histories);
-  return { data };
+  return useRandomStore((state) => state.histories);
 };
 
 export type CreateRandomItemDto = Pick<RandomItem, "label">;
-export const useSetRandomItem = () => {
+export const useCreateRandomItem = ({ onSuccess }: OnSuccess<RandomItem>) => {
   const setItem = useRandomStore((state) => state.setItem);
   return useCallback(
     (data: CreateRandomItemDto) => {
       const id = v4();
       const item: RandomItem = { id, ...data };
       setItem(id, item);
+      onSuccess(item);
       return item;
     },
     [setItem]
@@ -72,12 +52,12 @@ export const useDeleteRandomItem = () => {
 
 export type CreateRandomHistoryDto = Pick<RandomHistory, "value">;
 
-export const useSetRandomHistory = () => {
+export const useCreateRandomHistory = () => {
   const setHistory = useRandomStore((state) => state.setHistory);
   return useCallback(
     (data: CreateRandomHistoryDto) => {
       const id = v4();
-      const history: RandomHistory = { id, value: data.value, at: Date.now() };
+      const history: RandomHistory = { id, createdAt: Date.now(), ...data };
       setHistory(id, history);
       return history;
     },

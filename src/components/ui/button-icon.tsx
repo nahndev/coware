@@ -7,7 +7,7 @@ export type ButtonIconProps = React.ComponentProps<typeof Button> & {
 
 const ButtonIcon: React.FC<ButtonIconProps> = ({ className, icon: Icon, ...props }) => {
   return (
-    <Button {...props} variant="ghost" className={cn("p-0", className)}>
+    <Button {...props} variant="ghost" className={cn("p-0 cursor-pointer", className)}>
       <Icon />
     </Button>
   );

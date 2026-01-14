@@ -13,7 +13,7 @@ import { exampleTheme as theme } from "./theme";
 import A4 from "@/components/ui/a4";
 import TextToolbar from "./toolbar/TextToolbar";
 import DocumentVideoBox from "./DocumentVideoBox";
-import StickyHeaderLayout from "@/components/ui/layout/sticky-header-layout";
+import MainFooterLayout from "@/components/ui/layout/main-footer-layout";
 import ScrollableLayout from "@/components/ui/layout/scrollable-layout";
 
 const onError = (error: Error) => {
@@ -41,7 +41,7 @@ export default function TextEditor({ value, onChangeValue }: TextEditorProps) {
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <StickyHeaderLayout>
+      <MainFooterLayout>
         <TextToolbar />
         <ScrollableLayout className="flex flex-col">
           <DocumentVideoBox />
@@ -54,7 +54,7 @@ export default function TextEditor({ value, onChangeValue }: TextEditorProps) {
           </A4>
         </ScrollableLayout>
         <OnChangePlugin onChange={onChange} ignoreSelectionChange ignoreHistoryMergeTagChange />
-      </StickyHeaderLayout>
+      </MainFooterLayout>
     </LexicalComposer>
   );
 }
