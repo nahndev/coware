@@ -1,5 +1,5 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
-import ChatSidebar from "../../../components/planning/chat/chat-sidebar";
+import ChatSidebar from "../../../components/meeting/chat/chat-sidebar";
 
 export default function RoomLayout({ children }: { children: React.ReactNode }) {
   return (

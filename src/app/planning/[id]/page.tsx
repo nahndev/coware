@@ -1,13 +1,13 @@
 import EstimationPicker from "@/components/planning/estimation/estimation-picker";
 import ResultBoard from "@/components/planning/result/result-board";
-import ShareScreen from "@/components/planning/stream/share-screen";
+import ShareScreen from "@/components/meeting/stream/share-screen";
 import InProcessTicketCard from "@/components/planning/ticket/in-process-ticket-card";
 import Absolute from "@/components/ui/absolute";
 import Relative from "@/components/ui/relative";
 import Center from "@/components/ui/center";
 import Flex from "@/components/ui/flex";
 import { Card } from "@/components/ui/card";
-import RoomBox from "@/components/planning/stream/room-box";
+import RoomBox from "@/components/meeting/stream/room-box";
 
 export type TheRoomPageProps = {
   params: { id: string };
@@ -20,7 +20,7 @@ const TheRoomPage: React.FC<TheRoomPageProps> = async ({ params }) => {
   return (
     <Relative className="size-full">
       <RoomBox item={planning} />
-      <Absolute fluid className="hidden justify-center items-center bg-black/50">
+      <Absolute fluid className="flex justify-center items-center bg-black/50">
         <Card className="rounded-lg size-5/6 bg-slate-200 overflow-hidden">
           <InProcessTicketCard />
           <Center className="flex-1">
